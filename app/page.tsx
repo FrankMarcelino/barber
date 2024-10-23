@@ -12,7 +12,11 @@ import BarbershopItem from "./_components/babershop-item"
 const home = async () => {
   //chama meu DB
   const barbershops = await db.barbershop.findMany({})
-  console.log(barbershops)
+  const popularbarbershops = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
   return (
     <div>
       {/* hedaer */}
@@ -21,10 +25,27 @@ const home = async () => {
         <h2 className="text-xl font-bold">Olá, Frank!</h2>
         <p>Quarta-feira, 23 de outuvro.</p>
 
+        {/* busca */}
         <div className="mt-6 flex items-center gap-2">
           <Input placeholder="Faça sua busca..." />
           <Button>
             <SearchIcon />
+          </Button>
+        </div>
+
+        {/* busca rapida */}
+        <div className="flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant="secondary">
+            <Image src="/cabelo.svg" width={16} height={16} alt="" />
+            Cabelo
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            <Image src="/barba.svg" width={16} height={16} alt="" />
+            Barba
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            <Image src="/acabamento.svg" width={16} height={16} alt="" />
+            Acabamento
           </Button>
         </div>
 
@@ -65,6 +86,7 @@ const home = async () => {
             </div>
           </CardContent>
         </Card>
+
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
           Recomendados
         </h2>
@@ -73,7 +95,26 @@ const home = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularbarbershops.map((barbershop) => (
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            {/* footer */}
+            <p className="text-sm text-gray-400">
+              2024 - Copyright © All rights reserved.
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   )
 }
