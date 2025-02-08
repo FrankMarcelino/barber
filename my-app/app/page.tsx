@@ -1,9 +1,7 @@
-const Home = () => {
-  return (
-    <div>
-      <h1 className="text-red-500">Home</h1>
-    </div>
-  );
-};
+import { Button } from "./_components/ui/button"
 
-export default Home;
+const Home = () => {
+  return <Button>Click</Button>
+}
+
+export default Home
