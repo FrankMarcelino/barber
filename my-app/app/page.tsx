@@ -12,10 +12,13 @@ import BarbershopItem from "./_components/barbershop-item"
 const Home = async () => {
   // chamar meu banco de dados
   const barbershops = await db.barbershop.findMany({})
+  const popularBarbershops = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
 
-  {
-    /* <Header /> */
-  }
+  /* <Header /> */
   return (
     <div>
       <Header />
@@ -27,6 +30,19 @@ const Home = async () => {
           <Input placeholder="Faça sua busca..." />
           <Button>
             <SearchIcon />
+          </Button>
+        </div>
+
+        {/* Busca rapida */}
+        <div className="mt-6 flex gap-3">
+          <Button className="gap-2" variant="secondary">
+            Sobrancelhas
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            Labios
+          </Button>
+          <Button className="gap-2" variant="secondary">
+            Cilios
           </Button>
         </div>
 
@@ -70,7 +86,25 @@ const Home = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarbershops.map((barbershop) => (
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            <p className="text-xs text-gray-400">
+              2025 © Todos os direitos reservados
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   )
 }
