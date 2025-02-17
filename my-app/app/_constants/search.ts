@@ -4,7 +4,7 @@ interface QuickSearchOption {
 
 export const quickSearchOptions: QuickSearchOption[] = [
   {
-    title: "Sobrancelhas",
+    title: "Sobrancelha",
   },
   {
     title: "Labios",
