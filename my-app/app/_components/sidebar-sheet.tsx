@@ -5,7 +5,7 @@ import { CalendarIcon, HomeIcon, LogInIcon, LogOutIcon } from "lucide-react"
 import { SheetClose, SheetContent, SheetHeader, SheetTitle } from "./ui/sheet"
 import { quickSearchOptions } from "../_constants/search"
 import Link from "next/link"
-import Image from "next/image"
+// import Image from "next/image"
 import { Dialog, DialogContent, DialogTrigger } from "./ui/dialog"
 import { signOut, useSession } from "next-auth/react"
 import { Avatar, AvatarImage } from "./ui/avatar"
@@ -72,12 +72,12 @@ const SidebarSheet = () => {
           <SheetClose key={option.title} asChild>
             <Button className="justify-start gap-2" variant="ghost" asChild>
               <Link href={`/barbershops?service=${option.title}`}>
-                <Image
+                {/* <Image
                   alt={option.title}
                   src={option.imageUrl}
                   height={18}
                   width={18}
-                />
+                /> */}
                 {option.title}
               </Link>
             </Button>
