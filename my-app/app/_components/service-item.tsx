@@ -21,7 +21,7 @@ import { toast } from "sonner"
 import { getBookings } from "../_actions/get-bookings"
 import { Dialog, DialogContent } from "./ui/dialog"
 import SignInDialog from "./sign-in-dialog"
-import BookingSummary from "./booking-summary.tsx"
+import BookingSummary from "./booking-summary"
 import { useRouter } from "next/navigation"
 
 interface ServiceItemProps {
